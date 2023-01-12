@@ -1,5 +1,7 @@
 # Roku-Remote - Python - Ruby - Swift
-This program is a simple command-line utility for sending remote control commands to a Roku TV, made for automation of the TV from anything that can run Python, Ruby or Swift. (Since I have ported it. ;) )
+This program is a simple command-line utility for sending remote control commands to a Roku TV, made for automation of the TV from anything that can run Python, Ruby or Swift. (Since I have ported it. ;) ) 
+
+- NOTE: The Swift version is still funky and buggy. I haven't decided the best way to implement it, because there are some other things I want to do with that version, but it's a start. I'm probably going to turn it into a Swift Package, so I am just playing with it at the moment. It's here so you can play with it too.
 
 It takes four inputs from the command line:
  - The IP address of the TV (tv_address)

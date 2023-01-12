@@ -3,7 +3,7 @@ import Foundation
 let tvAddress = CommandLine.arguments[1]
 let command = CommandLine.arguments[2]
 var text: String? = nil
-if CommandLine.argc > 3 {
+if CommandLine.arguments.count > 3 {
     text = CommandLine.arguments[3]
 }
 let headers = ["Content-Type": "application/x-www-form-urlencoded"]
@@ -31,8 +31,7 @@ let COMMANDS = [
     "power": "PowerOff",
     "upchan": "ChannelUp",
     "downchan": "ChannelDown",
-    "input": "InputTuner",
-    "text": text
+    "input": "InputTuner"
 ]
 
 func sendText(_ text: String) {
@@ -43,9 +42,14 @@ func sendText(_ text: String) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = headers
-        let task = URLSession.shared.dataTask(with: request) { _, _, _ in }
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            print("Sent: \(key)")
+        }
         task.resume()
-        print("Sent: \(key)")
     }
 }
 
@@ -54,9 +58,14 @@ func sendKey(_ key: String) {
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.allHTTPHeaderFields = headers
-    let task = URLSession.shared.dataTask(with: request) { _, _, _ in }
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let error = error {
+            print("Error: \(error.localizedDescription)")
+            return
+        }
+        print("Sent: \(key)")
+    }
     task.resume()
-    print("Sent: \(key)")
 }
 
 guard let key = COMMANDS[command] else {

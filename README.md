@@ -18,3 +18,11 @@ If the command is text, it will send the provided text input, one character at a
 `python roku_remote.py 172.16.0.8 select`
 
 `python roku_remote.py 192.168.1.105 text youtube`
+
+
+On request, I also have added a remote_class.py file that allows you to add remote functionality to any script you require. Just import it and use like you would any py class.
+
+```
+remote = RokuRemote('192.168.1.100', 'play')
+remote.execute()
+```
